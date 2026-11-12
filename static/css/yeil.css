@@ -1,0 +1,203 @@
+/* Yeil Christian School 전용 공간(/yeil/) — JH 아시아링크 사이트 안에 있지만 따로 떨어진 학교 사이트처럼 보이게 한다. */
+@font-face{font-family:Suit;src:url('../fonts/SUIT-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Suit;src:url('../fonts/SUIT-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Suit;src:url('../fonts/SUIT-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+@view-transition{navigation:auto}
+
+:root{--g:#191c80;--g-deep:#14166a;--g2:#3a4fd6;--blue:#3a4fd6;--gold:#c79a2e;--ink:#1b2033;--mut:#6c7084;--bg:#f7f8fc;--line:#e6e8f2;--paper:#fff}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Suit,"Pretendard","Noto Sans KR",sans-serif;font-size:16px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* 맨 위 띠: JH 아시아링크로 돌아가기 */
+.ys-strip{background:var(--g);color:#d9dcf2;font-size:13px}
+.ys-strip .wrap{display:flex;justify-content:space-between;gap:12px;padding-block:8px}
+.ys-strip a{text-decoration:none;opacity:.9}.ys-strip a:hover{opacity:1;text-decoration:underline}
+
+/* 머리글 */
+.ys-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);view-transition-name:ys-head}
+.ys-head .wrap{display:flex;align-items:center;gap:28px;min-height:72px}
+.ys-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.ys-logo img{width:46px;height:46px}
+.ys-logo b{display:block;font-size:17px;font-weight:800;line-height:1.15;letter-spacing:-.01em}
+.ys-logo small{display:block;font-size:12px;color:var(--mut);letter-spacing:.04em}
+.ys-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.ys-nav details{position:relative}
+.ys-nav summary,.ys-nav>a{list-style:none;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;white-space:nowrap}
+.ys-nav summary::-webkit-details-marker{display:none}
+.ys-nav summary::after{content:"";display:inline-block;width:6px;height:6px;margin-left:8px;border:solid currentColor;border-width:0 2px 2px 0;transform:translateY(-3px) rotate(45deg);opacity:.5}
+.ys-nav summary:hover,.ys-nav>a:hover,.ys-nav details[open] summary{background:var(--bg)}
+.ys-nav .on>summary,.ys-nav>a.on{color:var(--g)}
+.ys-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:180px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 14px 30px rgba(20,40,20,.12);display:grid}
+.ys-menu a{padding:9px 12px;border-radius:8px;text-decoration:none;font-size:15px}
+.ys-menu a:hover{background:var(--bg)}.ys-menu a.on{color:var(--g);font-weight:700}
+@media (hover:hover){.ys-nav details:hover>.ys-menu{display:grid}.ys-nav details:not([open]):not(:hover)>.ys-menu{display:none}}
+@media (hover:none){.ys-nav details:not([open])>.ys-menu{display:none}}
+.ys-lms{margin-left:8px;background:var(--g);font-weight:800;color:#fff!important;border-radius:999px!important;padding:9px 18px!important}
+.ys-lms:hover{background:#2a2fa8!important}
+.ys-burger{display:none}
+
+/* 페이지 제목 띠 */
+.ys-title{background:#fff;border-bottom:1px solid var(--line)}
+.ys-title .wrap{padding-block:44px 38px}
+.ys-crumb{margin:0;font-size:13px;color:var(--g2);font-weight:700;letter-spacing:.12em}
+.ys-title h1{margin:6px 0 0;font-size:36px;line-height:1.25;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.ys-title p{margin:10px 0 0;color:var(--mut);max-width:60ch}
+
+main{view-transition-name:ys-main}
+.ys-body{padding-block:48px 80px}
+.sec{margin:0 0 56px}
+.sec:last-child{margin-bottom:0}
+.eyebrow{color:var(--g2);font-weight:700;font-size:13px;letter-spacing:.12em;margin:0}
+h2{font-size:26px;line-height:1.35;margin:4px 0 16px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.lead{color:var(--mut);margin:0 0 22px;max-width:65ch}
+
+/* 첫 화면 사진 */
+.hero{position:relative;border-radius:22px;overflow:hidden}
+.hero img{width:100%;aspect-ratio:16/7;object-fit:cover}
+.hero-txt{position:absolute;inset:auto 0 0 0;padding:36px 40px 32px;background:linear-gradient(transparent,rgba(25,28,128,.8));color:#fff}
+.hero-txt p{margin:0;font-size:13px;letter-spacing:.14em;opacity:.85}
+.hero-txt h2{margin:8px 0 0;font-size:34px;color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 2px 10px rgba(25,28,128,.06)}
+.card b{display:block;font-size:17px;margin-bottom:4px;color:var(--g)}
+.card span{color:var(--mut);font-size:15px}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.track{border-radius:18px;padding:28px;color:#fff;background:var(--g)}
+.track+.track{background:var(--blue)}
+.track small{opacity:.8;font-size:13px;letter-spacing:.1em}
+.track strong{display:block;font-size:24px;margin:6px 0 8px}
+.track p{margin:0;opacity:.92}
+
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.photos figure{margin:0}
+.photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
+.photos figcaption{font-size:13px;color:var(--mut);margin-top:6px;text-align:center}
+
+.scroll{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+.tbl th,.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl th{background:var(--bg);color:var(--g);font-weight:700;white-space:nowrap}
+.tbl td:first-child{white-space:nowrap;color:var(--mut)}
+@media (max-width:600px){.tbl{font-size:14px}.tbl th,.tbl td{padding:10px 8px}.tbl th{white-space:normal}}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--bg);color:var(--mut)}
+.tag.study{background:#fbf1d4;color:#8a6400}.tag.care{background:#e7eafb;color:var(--g)}
+
+/* 준비 중 자리 */
+.soon{border:2px dashed var(--line);border-radius:18px;padding:44px 28px;text-align:center;color:var(--mut)}
+.soon b{display:block;color:var(--ink);font-size:19px;margin-bottom:6px}
+.soon .tag{margin-bottom:12px;background:#fff3c4;color:#7a5b00}
+
+.list{border-top:2px solid var(--ink)}
+.list>div{display:flex;justify-content:space-between;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line)}
+.list>.empty{justify-content:center;color:var(--mut);padding:40px 4px}
+
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:var(--g);color:#fff;border-radius:20px;padding:28px 32px}
+.cta p{margin:0;font-size:19px;font-weight:800}
+.cta span{display:block;font-size:14px;font-weight:400;opacity:.85}
+.btn{display:inline-block;background:#fff;color:var(--g);text-decoration:none;font-weight:800;border-radius:999px;padding:11px 22px;white-space:nowrap}
+.btn.line{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.map{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--bg)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* 바닥글 */
+.ys-foot{background:var(--g-deep);color:#c9cde8;font-size:14px}
+.ys-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding-block:36px}
+.ys-foot b{color:#fff;font-size:16px}
+.ys-foot p{margin:4px 0 0}
+.ys-foot a{color:#fff}
+
+@media (max-width:960px){
+  .ys-burger{display:block;margin-left:auto}
+  .ys-burger summary{list-style:none;cursor:pointer;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-weight:700}
+  .ys-burger summary::-webkit-details-marker{display:none}
+  .ys-nav{display:none}
+  .ys-burger[open] .ys-mnav{display:block}
+  .ys-mnav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:8px max(20px,env(safe-area-inset-left,0px)) 20px;max-height:calc(100vh - 110px);overflow:auto}
+  .ys-mnav p{margin:14px 0 4px;font-size:12px;letter-spacing:.12em;color:var(--g2);font-weight:700}
+  .ys-mnav a{display:block;padding:12px 0;min-height:44px;box-sizing:border-box;text-decoration:none;font-weight:700;border-bottom:1px solid var(--bg)}
+  .ys-mnav a.on{color:var(--g)}
+  .ys-head .wrap{position:static}
+  .ys-head{position:sticky}
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  .ys-logo small{display:none}
+  .ys-logo{min-width:0;gap:10px;flex-shrink:1}.ys-burger{flex-shrink:0}.ys-logo span{min-width:0}.ys-logo b{font-size:14px;line-height:1.25}.ys-logo img{width:40px;height:40px}
+  .ys-title .wrap{padding-block:30px 26px}
+  .ys-title h1{font-size:28px}
+  h2{font-size:22px}
+  .hero img{aspect-ratio:4/3}
+  .hero-txt{padding:22px}
+  .hero-txt h2{font-size:22px}
+  .photos{grid-template-columns:1fr 1fr}
+  .cta{padding:24px}
+  .ys-body{padding-block:32px 60px}
+}
+@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}
+
+/* 위 띠 오른쪽: 본교 링크 + 언어 선택 */
+.ys-strip-r{display:flex;align-items:center;gap:16px}
+.ys-lang{position:relative}
+.ys-lang summary{list-style:none;cursor:pointer;opacity:.9}
+.ys-lang summary::-webkit-details-marker{display:none}
+.ys-lang summary::before{content:"🌐 "}
+.ys-lang-list{position:absolute;right:0;top:calc(100% + 8px);z-index:40;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:6px;display:grid;min-width:140px;box-shadow:0 14px 30px rgba(20,40,20,.15)}
+.ys-lang-list a{padding:7px 10px;border-radius:8px;text-decoration:none!important;opacity:1}
+.ys-lang-list a:hover{background:var(--bg)}.ys-lang-list a.on{color:var(--g);font-weight:700}
+[dir=rtl] .ys-lang-list{right:auto;left:0}
+@media (max-width:640px){.ys-strip-r>a{display:none}}
+
+/* 줄바꿈: keep-all은 한국어용. 일본어·중국어는 글자 단위로 끊어야 폰에서 넘치지 않는다 */
+body{overflow-wrap:break-word}
+html[lang^=ja] body,html[lang^=zh] body{word-break:normal;overflow-wrap:anywhere}
+
+/* LMS에서 가져온 공지·학사일정 */
+.feed-src{font-size:13px;color:var(--mut);margin:-36px 0 0}
+.notice{padding:18px 4px;border-bottom:1px solid var(--line)}
+.notice-head{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.notice-head b{font-size:17px}
+.notice-date{color:var(--mut);font-size:14px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.notice p{margin:6px 0 0;color:var(--mut);white-space:pre-line}
+.list .notice{display:block}
+.tbl tr.past td{opacity:.55}
+.tag.termStart,.tag.termEnd{background:#e7eafb;color:var(--g)}
+.tag.closure{background:#fbe6e4;color:#b2312b}
+.tag.timing{background:#fbf1d4;color:#8a6400}
+@media (max-width:640px){.notice-head{flex-direction:column;gap:2px}}
+[data-feed] .tbl td:first-child{width:14em}
+
+.track small{opacity:.8}
+.hero-txt p{opacity:.85}
+
+/* 메뉴가 길어 머리글에 안 들어가면(베트남어·몽골어 등) PC에서도 ☰ 메뉴로 — yeil.js가 html.ys-compact를 붙인다 */
+html.ys-compact .ys-burger{display:block;margin-left:auto}
+html.ys-compact .ys-burger summary{list-style:none;cursor:pointer;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font-weight:700}
+html.ys-compact .ys-burger summary::-webkit-details-marker{display:none}
+html.ys-compact .ys-nav{display:none}
+html.ys-compact .ys-burger[open] .ys-mnav{display:block}
+html.ys-compact .ys-mnav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:8px max(20px,env(safe-area-inset-left,0px)) 20px;max-height:calc(100vh - 110px);overflow:auto}
+html.ys-compact .ys-mnav p{margin:14px 0 4px;font-size:12px;letter-spacing:.12em;color:var(--g2);font-weight:700}
+html.ys-compact .ys-mnav a{display:block;padding:12px 0;min-height:44px;box-sizing:border-box;text-decoration:none;font-weight:700;border-bottom:1px solid var(--bg)}
+html.ys-compact .ys-mnav a.on{color:var(--g)}
+html.ys-compact .ys-head .wrap{position:static}
+html.ys-compact .ys-head{position:sticky}
+
+/* 첫 화면 교육목표·교훈 (yeilschool.com 교육철학 원문) */
+.card i{display:block;font-style:normal;font-size:13px;color:var(--mut);margin-top:4px}
+.goals{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.motto{margin:16px 0 0;font-weight:800;color:var(--g)}
+.motto span{display:inline-block;margin-inline-end:10px;font-size:12px;letter-spacing:.12em;color:var(--g2)}
+/* 2026-10-28 JH 홈페이지 상단바를 그대로 쓴다: 고정된 .nav 높이만큼 내리고, 학교 메뉴는 그 아래에 붙인다 */
+.ys-page{padding-top:var(--jhnav,96px)}
+.ys-page .nav,.ys-page .sidebar{font-family:Suit,Arial,sans-serif;font-size:16px;line-height:22px;letter-spacing:-.05em}
+.ys-page .nav img,.ys-page .sidebar img{display:inline-block}
+.ys-page .ys-head{position:relative;z-index:20}
+@media screen and (max-width:991px){.ys-page .nav,.ys-page .sidebar{font-size:9px}}
+@media screen and (max-width:767px){.ys-page .nav,.ys-page .sidebar{font-size:12px}}

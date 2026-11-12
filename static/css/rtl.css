@@ -1,0 +1,22 @@
+/* 아랍어(오른쪽→왼쪽) 페이지 보정. tools/i18n.py가 dir="rtl" 페이지에만 연결한다. */
+
+/* LTR에서는 화면 왼쪽 밖에 숨어 있던 요소(흐르는 배너, 접힌 메뉴)가 RTL에서는 스크롤 영역이 되어 페이지가 옆으로 밀린다 */
+html[dir="rtl"],
+html[dir="rtl"] body {
+  overflow-x: hidden;
+}
+
+/* 영어로 남겨 둔 큰 제목·라벨은 왼쪽→오른쪽으로 읽어야 마침표·물음표가 제자리에 온다 */
+html[dir="rtl"] .txt-hero,
+html[dir="rtl"] .txt-label,
+html[dir="rtl"] .txt-subhero {
+  unicode-bidi: isolate;
+  direction: ltr;
+}
+
+/* 폰 상단: 로고는 왼쪽 고정이라, 언어 버튼·메뉴 버튼 줄은 왼쪽→오른쪽 배치를 유지해야 메뉴 버튼이 로고 뒤로 숨지 않는다 */
+@media screen and (max-width: 991px) {
+  html[dir="rtl"] .container-nav {
+    direction: ltr;
+  }
+}
