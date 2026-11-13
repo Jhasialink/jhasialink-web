@@ -52,3 +52,52 @@
       .then(function () { btn.disabled = false; btn.textContent = "상담 신청하기"; });
   });
 })();
+
+// 기간 계산: 과정·방을 고르면 날짜와 가격이 바로 바뀐다(스크립트가 없으면 위 가격표로 충분하다).
+(function () {
+  var pk = document.querySelector(".picker");
+  if (!pk) return;
+  var C = JSON.parse(pk.getAttribute("data-courses")), sp = pk.getAttribute("data-special") === "1";
+  var cur = 2, room = 4;
+  var won = function (n) { return (n / 10000).toLocaleString("ko-KR") + "만 원"; };
+  function draw() {
+    var c = C[cur], extra = room === 2 ? 150000 * (c.w / 2) : 0;
+    var d = c.d.split(" ~ ");
+    pk.querySelector(".pk-date").textContent = "2027. " + d[0] + " 출국 ~ " + d[1] + " 귀국";
+    pk.querySelector(".pk-price").textContent = won(c.p + extra);
+    pk.querySelector(".pk-note").textContent = (room === 2 ? "2인실(" + won(extra) + " 추가)" : "4인실") +
+      (sp && c.p < c.r ? " · 정가 " + won(c.r + extra) + "에서 " + won(c.r - c.p) + " 할인" : "") +
+      " · 왕복 항공료 별도 · 토요일 액티비티 " + c.a + "번(비용 별도)";
+  }
+  pk.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    var grp = b.parentNode;
+    [].forEach.call(grp.querySelectorAll("button"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    if (b.hasAttribute("data-i")) cur = +b.getAttribute("data-i"); else room = +b.getAttribute("data-room");
+    draw();
+  });
+  draw();
+})();
+
+// 섹션 안 제목·글·사진이 차례로 살짝 올라온다(한 번만). 움직임 줄이기면 CSS가 끈다.
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("js");
+  var els = document.querySelectorAll(".ch > *, .cta > *");
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target, i = [].indexOf.call(el.parentNode.children, el);
+      el.style.transitionDelay = Math.min(i, 4) * 70 + "ms";
+      el.classList.add("in");
+      io.unobserve(el);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  [].forEach.call(els, function (el) {
+    var r = el.getBoundingClientRect();
+    if (r.top < innerHeight) return; // 처음부터 보이는 것은 숨기지 않는다
+    el.classList.add("rise");
+    io.observe(el);
+  });
+})();
