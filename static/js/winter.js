@@ -64,7 +64,9 @@
     var c = C[cur], extra = room === 2 ? 150000 * (c.w / 2) : 0;
     var d = c.d.split(" ~ ");
     pk.querySelector(".pk-date").textContent = "2027. " + d[0] + " 출국 ~ " + d[1] + " 귀국";
-    pk.querySelector(".pk-price").textContent = won(c.p + extra);
+    var pe = pk.querySelector(".pk-price"); pe.textContent = "";
+    if (sp && c.p < c.r) { var o = document.createElement("s"); o.textContent = won(c.r + extra); pe.appendChild(o); pe.appendChild(document.createTextNode(" → ")); }
+    pe.appendChild(document.createTextNode(won(c.p + extra)));
     pk.querySelector(".pk-note").textContent = (room === 2 ? "2인실(" + won(extra) + " 추가)" : "4인실") +
       (sp && c.p < c.r ? " · 정가 " + won(c.r + extra) + "에서 " + won(c.r - c.p) + " 할인" : "") +
       " · 왕복 항공료 별도 · 토요일 액티비티 " + c.a + "번(비용 별도)";
