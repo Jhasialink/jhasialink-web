@@ -38,3 +38,23 @@
   document.head.appendChild(css);
   document.body.appendChild(a);
 })();
+
+// 캠퍼스 시설 칸(4인실·2인실 …)을 눌러 다른 시설로 넘어가도 보던 높이 그대로 열리게 한다(맨 위로 튀지 않게).
+(function () {
+  var K = "campusY";
+  try {
+    var y = sessionStorage.getItem(K);
+    if (y !== null) {
+      sessionStorage.removeItem(K);
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, +y);
+      window.addEventListener("load", function () { window.scrollTo(0, +y); });
+    }
+  } catch (e) {}
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a.menu-btn");
+    if (a && /\/campus\//.test(a.getAttribute("href") || "")) {
+      try { sessionStorage.setItem(K, String(window.scrollY)); } catch (er) {}
+    }
+  });
+})();
