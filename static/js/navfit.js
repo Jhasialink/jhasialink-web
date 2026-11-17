@@ -1,17 +1,28 @@
 // PC 상단 메뉴가 가운데 로고와 겹칠 만큼 좁으면(외국어 메뉴가 길 때) 폰처럼 ☰ 메뉴로 바꾼다.
 (function () {
   var html = document.documentElement;
+  // 넓은 화면일수록 메뉴 사이를 넓게: 로고와 안 겹치는 가장 넓은 간격을 고르고, 가장 좁게 해도 겹치면 ☰ 메뉴로.
+  var GAPS = [2.6, 2.2, 1.8, 1.5, 1.2, 0.9, 0.6];
+  function hits(logo, items) {
+    var l = logo.getBoundingClientRect();
+    return items.some(function (e) {
+      var r = e.getBoundingClientRect();
+      return r.width && r.right > l.left - 24 && r.left < l.right + 24;
+    });
+  }
   function fit() {
     html.classList.remove("nav-compact");
     var logo = document.querySelector(".container-nav > .logobox");
     var items = [].slice.call(document.querySelectorAll(".container-nav .navpc > *"));
     if (!logo || !items.length || !items[0].offsetParent) return;
-    var l = logo.getBoundingClientRect();
-    var hit = items.some(function (e) {
-      var r = e.getBoundingClientRect();
-      return r.width && r.right > l.left - 12 && r.left < l.right + 12;
-    });
-    if (hit) html.classList.add("nav-compact");
+    html.classList.remove("nav-tight");
+    for (var i = 0; i < GAPS.length; i++) {
+      html.style.setProperty("--navgap", GAPS[i] + "em");
+      if (GAPS[i] <= 1.2) html.classList.add("nav-tight"); // 좁으면 세로줄로 구분(세로줄 폭까지 넣고 잰다)
+      if (!hits(logo, items)) return;
+    }
+    html.classList.remove("nav-tight");
+    html.classList.add("nav-compact");
   }
   fit();
   addEventListener("resize", fit);

@@ -5361,7 +5361,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible,summary:focus-visi
 .txt-hero,.txt-herosub,.txt-subhero,.txt-subhero1,.subhero-txtbox .div-block-46,.img-hero,.img-hero-mo,.img-subhero,.img-subhero-mo{opacity:1!important;transform:none!important}
 html:not(.w-mod-ix) [style*="opacity:0"]{opacity:1!important}
 /* 2026-11-12 상단 메뉴에 「2027 겨울캠프」를 넣어도 1280px에서 로고와 안 겹치게 간격을 줄인다 */
-.navpc{grid-column-gap:.6em;column-gap:.6em}
+.navpc{grid-column-gap:var(--navgap,.6em);column-gap:var(--navgap,.6em)}
+/* 2026-11-18 화면이 넓으면 메뉴 사이를 넓힌다: navfit.js가 로고와 안 겹치는 가장 넓은 간격(--navgap)을 고른다 */
 
 /* 2026-11-17 폰 브라우저(웨일·삼성 인터넷)의 강제 다크 막기: 다크를 스스로 처리하는 페이지로 알리고, 색은 밝은 그대로 둔다 */
 :root{color-scheme:light dark}
@@ -5369,3 +5370,6 @@ body{color-scheme:light}
 
 /* 웨일은 자체 다크 모드가 있는 사이트를 강제 반전하지 않는다(2026-06 웨일 공지). 다크에서도 밝은 색 그대로 */
 @media (prefers-color-scheme:dark){:root{color-scheme:light dark}body{color-scheme:light}}
+/* 2026-11-18 간격을 넓힐 자리가 없을 때(.nav-tight)는 메뉴 사이에 옅은 세로줄로 구분 */
+html.nav-tight .navpc>.navtxt{position:relative}
+html.nav-tight .navpc>.navtxt+.navtxt::before,html.nav-tight .navpc>.nav-dd+.navtxt::before{content:"";position:absolute;left:calc(var(--navgap,.6em) / -2);top:50%;width:1px;height:.95em;transform:translate(-50%,-50%);background:#c9cad6}
