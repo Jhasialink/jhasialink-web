@@ -5362,3 +5362,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible,summary:focus-visi
 html:not(.w-mod-ix) [style*="opacity:0"]{opacity:1!important}
 /* 2026-11-12 상단 메뉴에 「2027 겨울캠프」를 넣어도 1280px에서 로고와 안 겹치게 간격을 줄인다 */
 .navpc{grid-column-gap:.6em;column-gap:.6em}
+
+/* 2026-11-17 폰 브라우저(웨일·삼성 인터넷)의 강제 다크 막기: 다크를 스스로 처리하는 페이지로 알리고, 색은 밝은 그대로 둔다 */
+:root{color-scheme:light dark}
+body{color-scheme:light}

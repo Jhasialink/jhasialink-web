@@ -103,3 +103,16 @@
     io.observe(el);
   });
 })();
+
+// 머리줄 메뉴: 바깥을 누르거나 Esc·뒤로가기를 누르면 닫힌다(뒤로가기는 메뉴만 닫고 페이지는 그대로).
+(function () {
+  var m = document.querySelector(".menu");
+  if (!m) return;
+  m.addEventListener("toggle", function () {
+    if (m.open) history.pushState({ menu: 1 }, "");
+    else if (history.state && history.state.menu) history.back();
+  });
+  window.addEventListener("popstate", function () { if (m.open) m.open = false; });
+  document.addEventListener("click", function (e) { if (m.open && !m.contains(e.target)) m.open = false; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && m.open) { m.open = false; m.querySelector("summary").focus(); } });
+})();

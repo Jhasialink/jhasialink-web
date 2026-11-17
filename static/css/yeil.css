@@ -201,3 +201,7 @@ html.ys-compact .ys-head{position:sticky}
 .ys-page .ys-head{position:relative;z-index:20}
 @media screen and (max-width:991px){.ys-page .nav,.ys-page .sidebar{font-size:9px}}
 @media screen and (max-width:767px){.ys-page .nav,.ys-page .sidebar{font-size:12px}}
+
+/* 2026-11-17 폰 브라우저(웨일·삼성 인터넷)의 강제 다크 막기: 다크를 스스로 처리하는 페이지로 알리고, 색은 밝은 그대로 둔다 */
+:root{color-scheme:light dark}
+body{color-scheme:light}

@@ -4,7 +4,7 @@
 @font-face{font-family:Suit;src:url(../fonts/SUIT-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:Suit;src:url(../fonts/SUIT-ExtraBold.woff2) format("woff2");font-weight:800;font-display:swap}
 :root{--navy:#191c80;--navy-ink:#fff;--ivory:#f6f2e8;--white:#fff;--gold:#e9dcb8;--ink:#1f2133;--mut:#4d4f63;--accent:#d8b45c;--red:#c0362c;
-  --m:clamp(20px,5vw,56px);--w:1080px;color-scheme:light only}
+  --m:clamp(20px,5vw,56px);--w:1080px;color-scheme:light dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -15,7 +15,8 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
 /* 머리줄 */
-.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px var(--m);background:var(--navy);color:#fff}
+.top{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:8px var(--m);background:var(--navy);color:#fff}
+.logo{justify-self:start}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:16px}
 .logo img{width:44px;height:44px;background:none;border-radius:50%}
 .top-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--accent);color:var(--ink);text-decoration:none;font-weight:800;font-size:15px}
@@ -237,3 +238,29 @@ form .btn{width:100%}
 .score b{font-size:clamp(28px,8vw,40px);letter-spacing:-.02em}
 .score em{font-style:normal;color:var(--red);font-weight:800;font-size:20px;margin-left:auto}
 .flow{font-weight:800;text-align:center}
+
+/* 2026-11-17 폰 브라우저(웨일·삼성 인터넷)의 강제 다크 막기: 다크를 스스로 처리하는 페이지로 알리고, 색은 밝은 그대로 둔다 */
+body{color-scheme:light}
+
+/* 머리줄 메뉴: 상담 신청은 가운데, 메뉴는 오른쪽 위 */
+.menu{justify-self:end;position:static}
+.menu summary{list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border-radius:10px}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary:hover{background:rgba(255,255,255,.12)}
+.menu summary i,.menu summary i::before,.menu summary i::after{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .2s,opacity .2s}
+.menu summary i{position:relative}
+.menu summary i::before,.menu summary i::after{content:"";position:absolute;left:0}
+.menu summary i::before{top:-7px}.menu summary i::after{top:7px}
+.menu[open] summary i{background:transparent}
+.menu[open] summary i::before{transform:translateY(7px) rotate(45deg)}
+.menu[open] summary i::after{transform:translateY(-7px) rotate(-45deg)}
+.menu-list{position:absolute;left:0;right:0;top:100%;background:var(--navy);border-top:1px solid rgba(255,255,255,.15);padding:8px var(--m) 20px;max-height:calc(100vh - 60px);overflow:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 32px}
+.menu-list div{display:grid;align-content:start}
+.menu-list b{font-size:14px;color:var(--accent);padding:14px 0 4px}
+.menu-list a{display:block;padding:11px 0;color:#fff;text-decoration:none;font-weight:800;font-size:17px;border-bottom:1px solid rgba(255,255,255,.1)}
+.menu-list a:hover{color:var(--accent)}
+.menu-list a[aria-current]{color:var(--accent)}
+.menu[open] .menu-list{animation:menuIn .2s ease}
+@keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.menu[open] .menu-list{animation:none}.menu summary i,.menu summary i::before,.menu summary i::after{transition:none}}
+@media (max-width:480px){.logo span{display:none}.top-btn{padding:0 18px}}
