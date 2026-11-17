@@ -223,3 +223,17 @@ form .btn{width:100%}
 .pk-price s{font-size:.5em;font-weight:600;color:#c9cbe6;text-decoration-thickness:2px}
 .ch>.plain{margin-left:auto;margin-right:auto}  /* .plain margin:0 이 가운데 정렬을 덮어 왼쪽으로 튀던 것 */
 .online-only{font-weight:800}
+/* 11-17 시크릿 가격표: 일반 등록가 · 조기등록가 · 할인 혜택 */
+.due{text-align:right;color:var(--red);font-weight:800;margin:0 0 8px!important}
+.price.sp th:last-child{color:var(--mut)}
+.price.sp th:nth-child(3){color:var(--red)}
+.price.sp td.off{color:#8a6a1e;font-weight:800;white-space:nowrap;vertical-align:middle}
+@media (max-width:420px){.price.sp th,.price.sp td{padding-left:6px;padding-right:6px}.price.sp td.off{font-size:14px}}
+.cert{border-left:4px solid var(--accent);padding:4px 0 4px 18px;margin-top:32px}
+.cert h3{color:var(--accent)}
+.score{display:grid;gap:12px;margin:12px 0}
+.score div{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid #e3ddcc;padding:10px 0}
+.score span{min-width:5em;color:var(--mut);font-weight:800}
+.score b{font-size:clamp(28px,8vw,40px);letter-spacing:-.02em}
+.score em{font-style:normal;color:var(--red);font-weight:800;font-size:20px;margin-left:auto}
+.flow{font-weight:800;text-align:center}
