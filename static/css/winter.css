@@ -264,3 +264,6 @@ body{color-scheme:light}
 @keyframes menuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.menu[open] .menu-list{animation:none}.menu summary i,.menu summary i::before,.menu summary i::after{transition:none}}
 @media (max-width:480px){.logo span{display:none}.top-btn{padding:0 18px}}
+
+/* 웨일은 자체 다크 모드가 있는 사이트를 강제 반전하지 않는다(2026-06 웨일 공지). 다크에서도 밝은 색 그대로 */
+@media (prefers-color-scheme:dark){:root{color-scheme:light dark}body{color-scheme:light}}
