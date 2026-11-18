@@ -267,3 +267,10 @@ body{color-scheme:light}
 
 /* 웨일은 자체 다크 모드가 있는 사이트를 강제 반전하지 않는다(2026-06 웨일 공지). 다크에서도 밝은 색 그대로 */
 @media (prefers-color-scheme:dark){:root{color-scheme:light dark}body{color-scheme:light}}
+/* 과목별 교시 표 */
+.subj td:first-child{text-align:left;padding-left:12px}
+.subj th:first-child{text-align:left;padding-left:12px}
+.subj td,.subj th{color:var(--ink,#1f2133)}
+.subj .na{color:#b9b4a6}
+.subj .sum td{font-weight:800;background:#f6f2e7}
+.navy .tbl{margin-top:8px}
