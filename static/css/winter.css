@@ -274,3 +274,13 @@ body{color-scheme:light}
 .subj .na{color:#b9b4a6}
 .subj .sum td{font-weight:800;background:#f6f2e7}
 .navy .tbl{margin-top:8px}
+/* 11-21 학부모 동반 가격 */
+.withp{margin-top:40px}
+.withp h3{font-size:22px;margin:0 0 6px}
+.withp>p{margin:0 0 14px}
+.price.gt th:last-child{color:var(--mut)}
+.price.gt td{vertical-align:middle}
+.fine-list{font-size:14px;color:var(--mut);margin:8px 0 0;padding-left:18px}
+.fine-list li{margin-bottom:6px;max-width:75ch}
+.sib{margin:4px 0 0;font-size:16px}
+.sib b{color:var(--red);margin-right:6px}
