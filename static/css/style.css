@@ -5373,3 +5373,6 @@ body{color-scheme:light}
 /* 2026-11-18 간격을 넓힐 자리가 없을 때(.nav-tight)는 메뉴 사이에 옅은 세로줄로 구분 */
 html.nav-tight .navpc>.navtxt{position:relative}
 html.nav-tight .navpc>.navtxt+.navtxt::before,html.nav-tight .navpc>.nav-dd+.navtxt::before{content:"";position:absolute;left:calc(var(--navgap,.6em) / -2);top:50%;width:1px;height:.95em;transform:translate(-50%,-50%);background:#c9cad6}
+
+/* 11-21 키보드로 움직일 때 지금 위치 보이기(마우스로 누를 땐 안 보임) */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #2f6bff;outline-offset:2px}

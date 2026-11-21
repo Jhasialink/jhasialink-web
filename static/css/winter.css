@@ -287,3 +287,6 @@ body{color-scheme:light}
 .price.gt th,.price.gt td{padding:10px 6px;font-size:14px}
 .price.gt th{white-space:normal}
 @media (min-width:720px){.price.gt th,.price.gt td{padding:12px 10px;font-size:16px}}
+
+/* 11-21 키보드로 움직일 때 지금 위치 보이기(마우스로 누를 땐 안 보임) */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #2f6bff;outline-offset:2px}

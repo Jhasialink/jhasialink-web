@@ -208,3 +208,6 @@ body{color-scheme:light}
 
 /* 웨일은 자체 다크 모드가 있는 사이트를 강제 반전하지 않는다(2026-06 웨일 공지). 다크에서도 밝은 색 그대로 */
 @media (prefers-color-scheme:dark){:root{color-scheme:light dark}body{color-scheme:light}}
+
+/* 11-21 키보드로 움직일 때 지금 위치 보이기(마우스로 누를 땐 안 보임) */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #2f6bff;outline-offset:2px}
