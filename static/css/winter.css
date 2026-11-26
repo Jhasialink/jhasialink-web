@@ -290,3 +290,9 @@ body{color-scheme:light}
 
 /* 11-21 키보드로 움직일 때 지금 위치 보이기(마우스로 누를 땐 안 보임) */
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid #2f6bff;outline-offset:2px}
+
+/* 카카오톡 문의 (11-26) */
+.kakao-q{margin:0 0 20px;font-size:15px;line-height:1.6;word-break:keep-all}
+.kakao-q a{display:inline-block;margin-left:4px;padding:2px 10px;border-radius:999px;background:#FEE500;color:#191919;font-weight:800;text-decoration:none;white-space:nowrap}
+.done-k{margin:14px 0 16px;word-break:keep-all}
+.btn-kakao{background:#FEE500;color:#191919;width:100%;max-width:420px}
