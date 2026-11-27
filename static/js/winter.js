@@ -3,6 +3,16 @@
   var f = document.getElementById("lead");
   if (!f) return;
   var KEY = "wc-draft", err = f.querySelector(".err"), btn = f.querySelector("button[type=submit]");
+  // 어디서 왔는지(광고 A1·B1 등): 처음 들어온 주소의 utm·fbclid를 30일 기억한다. 광고 보고 나갔다가 나중에 다시 와서 신청해도 광고로 셈 (2026-11-27)
+  var SRC = location.search.slice(1, 300);
+  try {
+    if (/utm_|fbclid/.test(SRC)) localStorage.setItem("wc-src", JSON.stringify({ q: SRC, t: Date.now() }));
+    else {
+      var sv = JSON.parse(localStorage.getItem("wc-src") || "null");
+      if (sv && Date.now() - sv.t < 30 * 864e5) SRC = sv.q;
+      else if (document.referrer) { var rh = new URL(document.referrer).hostname; if (rh !== location.hostname) SRC = "ref=" + rh; }
+    }
+  } catch (e) {}
   try {
     var d = JSON.parse(localStorage.getItem(KEY) || "{}");
     Object.keys(d).forEach(function (k) {
@@ -32,7 +42,7 @@
     if (!o.child_age.trim()) return fail("아이 나이(학년)를 적어 주세요.", f.elements.child_age);
     if (!o.agree) return fail("개인정보 수집·이용에 동의해 주세요.", f.elements.agree);
     o.source = f.getAttribute("data-source");
-    o.utm = location.search.slice(1, 300);
+    o.utm = SRC;
     btn.disabled = true; btn.textContent = "보내는 중…";
     // 신청 저장은 Cloudflare에 남아 있다(홈페이지는 서울 서버). text/plain 이라 브라우저 사전 확인 요청 없이 한 번에 간다.
     var API = /^(localhost|127\.)/.test(location.hostname) ? "/api/lead" : "https://jhasialink.pages.dev/api/lead";
@@ -41,6 +51,7 @@
       .then(function (r) {
         if (!r.ok) throw { msg: r.error };
         try { localStorage.removeItem(KEY); } catch (e) {}
+        try { if (window.fbq) window.fbq("track", "Lead"); } catch (e) {} // 메타 픽셀이 있으면 「상담 신청」으로 알림
         f.hidden = true;
         var done = f.parentNode.querySelector(".done");
         done.hidden = false;
